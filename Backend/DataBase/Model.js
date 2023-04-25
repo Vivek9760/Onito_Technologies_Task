@@ -66,7 +66,7 @@ const userSchema = new mongoose.Schema({
     martialStatus:{
         type:String
     },
-    Nationality:{
+    nationality:{
         type:String,
         default:"India"
     }
