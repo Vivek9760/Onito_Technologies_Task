@@ -5,14 +5,9 @@ const {body,validationResult} = require('express-validator')
 
 
 router.post('/postData',[
-    body('email',"Enter a valid Email").isEmail(),
     body('name',"Enter a valid name").exists(),
     body('age',"Enter a valid age").exists(),
     body('sex',"Enter a valid sex").exists(),
-    body('mobile',"Enter a valid mobile number").isLength({min:10,max:10}),
-    body('aadhar',"Enter a valid aadhar number").isLength({min:12,max:12}),
-    body('pan',"Enter a valid pan number").isLength({min:10,max:10}),
-    body('emergencyContact',"Enter a valid emergency Contact number").isLength({min:10,max:10}),
 ] ,async(req,res)=>{
 
     try{

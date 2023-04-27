@@ -25,9 +25,9 @@ const userSchema = new mongoose.Schema({
     },
     pan:{
         type:String,
-        minLength:10,
         maxLength:10,
-        uppercase:true
+        minLength:10,
+        upperCase:true
     },
     guardianName:{
         type:String
@@ -60,13 +60,16 @@ const userSchema = new mongoose.Schema({
     occupation:{
         type:String
     },
-    religion:{
+    category:{
         type:String
     },
     martialStatus:{
         type:String
     },
-    Nationality:{
+    bloodGroup:{
+        type:String
+    },
+    nationality:{
         type:String,
         default:"India"
     }
