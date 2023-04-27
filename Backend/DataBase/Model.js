@@ -25,9 +25,9 @@ const userSchema = new mongoose.Schema({
     },
     pan:{
         type:String,
+        uppercase:true,
         maxLength:10,
-        minLength:10,
-        upperCase:true
+        minLength:10
     },
     guardianName:{
         type:String
