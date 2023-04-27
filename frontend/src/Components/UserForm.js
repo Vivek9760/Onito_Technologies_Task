@@ -65,6 +65,7 @@ export default function UserForm() {
     handleSubmit,
     formState: { errors },
     reset,
+    unregister
   } = useForm({
     resolver: yupResolver(Schema),
     defaultValues: { country: "India", nationality: "India" },
@@ -82,6 +83,7 @@ export default function UserForm() {
     });
     console.log(data);
     reset();
+    setGovtId('');
   };
 
   return (
@@ -180,7 +182,7 @@ export default function UserForm() {
                     value={govtId}
                     onChange={(e) => {
                       setGovtId(e.target.value);
-                      reset({ pan: "", aadhar: "" });
+                     unregister("pan"); unregister("aadhar");
                     }}
                   >
                     <option label="Select Id" />
