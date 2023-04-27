@@ -13,7 +13,6 @@ export default function UsersData() {
       let res = await fetch("http://localhost:5000/users/getData");
       res = await res.json();
       setData(res);
-      console.log(res)
     } catch (error) {
       console.log(error.message);
     }
@@ -29,7 +28,7 @@ export default function UsersData() {
             <th>Age/Sex</th>
             <th>Mobile</th>
             <th>Address</th>
-            <th>GovtID</th>
+            <th>GovtID <br /> (Pan/Aadhar Card)</th>
             <th>Guardian Name</th>
             <th>Nationality</th>
           </tr>
@@ -43,7 +42,7 @@ export default function UsersData() {
               <td>{`${user.age}Y/${user.sex}`}</td>
               <td>{user.mobile?user.mobile:"..."}</td>
               <td>{user.address?user.address:"..."}</td>
-              <td>{user.aadhar?user.aadhar:(user.pan?user.pan:"...")}</td>
+              <td>{user.pan?user.pan:(user.aadhar?user.aadhar:"...")}</td>
               <td>{user.guardianName?user.guardianName:"..."}</td>
               <td>{user.nationality}</td>
             </tr>
