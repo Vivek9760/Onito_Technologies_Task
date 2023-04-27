@@ -64,8 +64,7 @@ export default function UserForm() {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
-    unregister
+    reset
   } = useForm({
     resolver: yupResolver(Schema),
     defaultValues: { country: "India", nationality: "India" },
@@ -74,14 +73,22 @@ export default function UserForm() {
   const [govtId, setGovtId] = useState("");
 
   const onSubmit = async (data) => {
+    let userData = {...data}
+    for(let item in userData)
+{
+    if(userData[item]==='')
+    {
+        delete userData[item]
+    }
+}
     await fetch("http://localhost:5000/users/postData", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ ...data }),
+      body: JSON.stringify({ ...userData }),
     });
-    console.log(data);
+    console.log(userData);
     reset();
     setGovtId('');
   };
@@ -109,7 +116,7 @@ export default function UserForm() {
                   Name<sup style={{ color: "red" }}>*</sup>
                 </Form.Label>
                 <Col md={9}>
-                  <Form.Control type="text" {...register("name")} />
+                  <Form.Control type="text" {...register("name")} placeholder="Enter Your Name "/>
                   {errors.name && (
                     <span className="error ps-2">{errors.name.message}</span>
                   )}
@@ -124,7 +131,7 @@ export default function UserForm() {
                   Age<sup style={{ color: "red" }}>*</sup>
                 </Form.Label>
                 <Col md={9}>
-                  <Form.Control type="number" {...register("age")} />
+                  <Form.Control type="number" {...register("age")} placeholder="Enter Your Age " />
                   {errors.age && (
                     <span className="error ps-2">{errors.age.message}</span>
                   )}
@@ -162,8 +169,8 @@ export default function UserForm() {
                 <Form.Label as={Col} md={2}>
                   Mobile
                 </Form.Label>
-                <Col md={6}>
-                  <Form.Control type="text" {...register("mobile")} />
+                <Col md={7}>
+                  <Form.Control type="text" {...register("mobile")} placeholder="Enter Your Mobile Number"/>
                   {errors.mobile && (
                     <span className="error ps-2">{errors.mobile.message}</span>
                   )}
@@ -182,7 +189,7 @@ export default function UserForm() {
                     value={govtId}
                     onChange={(e) => {
                       setGovtId(e.target.value);
-                     unregister("pan"); unregister("aadhar");
+                     reset({pan:'',aadhar:''});
                     }}
                   >
                     <option label="Select Id" />
@@ -192,7 +199,7 @@ export default function UserForm() {
                 </Col>
                 {govtId && (
                   <Col md={7} className="pe-5">
-                    <Form.Control
+                    <Form.Control  placeholder={`Enter Your ${govtId==='pan'?"PAN":"Aadhar"} Card Number`}
                       type="text"
                       {...register(govtId)}
                     />
@@ -231,7 +238,7 @@ export default function UserForm() {
                   Guardian Name
                 </Form.Label>
                 <Col md={7}>
-                  <Form.Control type="text" {...register("guardianName")} />
+                  <Form.Control type="text" {...register("guardianName")} placeholder="Enter Your Guardian Name" />
                 </Col>
               </Row>
             </Form.Group>
@@ -243,7 +250,7 @@ export default function UserForm() {
                   Email
                 </Form.Label>
                 <Col md={10}>
-                  <Form.Control type="text" {...register("email")} />
+                  <Form.Control type="text" {...register("email")} placeholder="Enter Your Email" />
                   {errors.email && (
                     <span className="error ps-2">{errors.email.message}</span>
                   )}
@@ -258,7 +265,7 @@ export default function UserForm() {
                   Emergency Contact Number
                 </Form.Label>
                 <Col md={6}>
-                  <Form.Control type="text" {...register("emergencyContact")} />
+                  <Form.Control type="text" {...register("emergencyContact")} placeholder="Enter Your Contact Number"/>
                   {errors.emergencyContact && (
                     <span className="error ps-2">
                       {errors.emergencyContact.message}
@@ -291,7 +298,7 @@ export default function UserForm() {
                   Address
                 </Form.Label>
                 <Col md={10}>
-                  <Form.Control type="text" {...register("address")} />
+                  <Form.Control type="text" {...register("address")} placeholder="Enter Your Address"/>
                 </Col>
               </Row>
             </Form.Group>
@@ -301,7 +308,7 @@ export default function UserForm() {
               <Row>
                 <Form.Label as={Col}>State</Form.Label>
                 <Col md={9}>
-                  <Form.Control type="text" {...register("state")} />
+                  <Form.Control type="text" {...register("state")} placeholder="Enter Your State"/>
                 </Col>
               </Row>
             </Form.Group>
@@ -311,7 +318,7 @@ export default function UserForm() {
               <Row>
                 <Form.Label as={Col}>City</Form.Label>
                 <Col md={10}>
-                  <Form.Control type="text" {...register("city")} />
+                  <Form.Control type="text" {...register("city")} placeholder="Enter Your City"/>
                 </Col>
               </Row>
             </Form.Group>
@@ -327,7 +334,7 @@ export default function UserForm() {
                   Country
                 </Form.Label>
                 <Col md={7}>
-                  <Form.Control type="text" {...register("country")} />
+                  <Form.Control type="text" {...register("country")} placeholder="Enter Your Country"/>
                 </Col>
               </Row>
             </Form.Group>
@@ -337,7 +344,7 @@ export default function UserForm() {
               <Row>
                 <Form.Label as={Col}>Pincode</Form.Label>
                 <Col md={8}>
-                  <Form.Control type="text" {...register("pincode")} />
+                  <Form.Control type="text" {...register("pincode")} placeholder="Enter Pincode"/>
                   {errors.pincode && (
                     <span className="error ps-2">{errors.pincode.message}</span>
                   )}
@@ -368,7 +375,7 @@ export default function UserForm() {
                   Occupation
                 </Form.Label>
                 <Col md={8}>
-                  <Form.Control type="text" {...register("occupation")} />
+                  <Form.Control type="text" {...register("occupation")} placeholder="Enter Occupation"/>
                 </Col>
               </Row>
             </Form.Group>
@@ -439,7 +446,7 @@ export default function UserForm() {
               <Row>
                 <Form.Label as={Col} md={3}>Nationality</Form.Label>
                 <Col md={8}>
-                  <Form.Control type="text" {...register("nationality")} />
+                  <Form.Control type="text" {...register("nationality")} placeholder="Enter Your Nationality"/>
                 </Col>
               </Row>
             </Form.Group>
