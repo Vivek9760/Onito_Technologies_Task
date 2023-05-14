@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import "yup-phone";
 import { useState } from "react";
+import '../index.css'
 
 const Schema = yup.object({
   name: yup.string().required("This field is required"),
@@ -110,12 +111,12 @@ export default function UserForm() {
           {/* Row 2 - 3_Text_Fields */}
           <Row className="mb-3 mt-3">
             {/* text-field 1 */}
-            <Form.Group as={Col} md={5}>
+            <Form.Group className="mt-1" as={Col} xs={12} md={4} lg={5}>
               <Row>
-                <Form.Label as={Col} md={2}>
+                <Form.Label as={Col} xs={3} md={4} lg={2}>
                   Name<sup style={{ color: "red" }}>*</sup>
                 </Form.Label>
-                <Col md={9}>
+                <Col xs={9} md={9}>
                   <Form.Control type="text" {...register("name")} placeholder="Enter Your Name "/>
                   {errors.name && (
                     <span className="error ps-2">{errors.name.message}</span>
@@ -125,12 +126,12 @@ export default function UserForm() {
             </Form.Group>
 
             {/* text-field 2 */}
-            <Form.Group as={Col} md={3}>
+            <Form.Group className="mt-1" as={Col} xs={12} md={4} lg={3}>
               <Row>
-                <Form.Label as={Col} md={2}>
+                <Form.Label as={Col} xs={3} md={4} lg={2}>
                   Age<sup style={{ color: "red" }}>*</sup>
                 </Form.Label>
-                <Col md={9}>
+                <Col xs={9} md={9}>
                   <Form.Control type="number" {...register("age")} placeholder="Enter Your Age " />
                   {errors.age && (
                     <span className="error ps-2">{errors.age.message}</span>
@@ -140,12 +141,12 @@ export default function UserForm() {
             </Form.Group>
 
             {/* text-field 3 */}
-            <Form.Group as={Col} md={4}>
+            <Form.Group className="mt-1"  as={Col} xs={12} md={4}>
               <Row>
-                <Form.Label as={Col} md={2}>
+                <Form.Label as={Col} xs={3} md={4} lg={2}>
                   Sex<sup style={{ color: "red" }}>*</sup>
                 </Form.Label>
-                <Col md={9}>
+                <Col xs={9} md={9}>
                   <Form.Select {...register("sex")}>
                     <option label="Select Gender" />
                     <option value="M">Male</option>
@@ -164,12 +165,12 @@ export default function UserForm() {
           {/* Row 3 - 2_Text_Fields */}
           <Row className="mb-3 mt-3">
             {/* text-field 1 */}
-            <Form.Group as={Col} md={5} className="pe-5">
+            <Form.Group className="mt-1"  as={Col} xs={12} md={5}>
               <Row>
-                <Form.Label as={Col} md={2}>
+                <Form.Label as={Col} xs={3} md={4} lg={2}>
                   Mobile
                 </Form.Label>
-                <Col md={7}>
+                <Col xs={9} md={10} lg={6}>
                   <Form.Control type="text" {...register("mobile")} placeholder="Enter Your Mobile Number"/>
                   {errors.mobile && (
                     <span className="error ps-2">{errors.mobile.message}</span>
@@ -179,12 +180,12 @@ export default function UserForm() {
             </Form.Group>
 
             {/* text-field 2 */}
-            <Form.Group as={Col} md={7}>
+            <Form.Group className="mt-1"  xs={12} as={Col} md={7}>
               <Row>
-                <Form.Label as={Col} md={2}>
+                <Form.Label xs={5} as={Col} md={12} lg={2}>
                   Govt Issued ID
                 </Form.Label>
-                <Col md={3}>
+                <Col xs={7} md={3}>
                   <Form.Select
                     value={govtId}
                     onChange={(e) => {
@@ -198,8 +199,8 @@ export default function UserForm() {
                   </Form.Select>
                 </Col>
                 {govtId && (
-                  <Col md={7} className="pe-5">
-                    <Form.Control  placeholder={`Enter Your ${govtId==='pan'?"PAN":"Aadhar"} Card Number`}
+                  <Col md={9} lg={7} className="pe-5">
+                    <Form.Control className="mt-767px" placeholder={`Enter Your ${govtId==='pan'?"PAN":"Aadhar"} Card Number`}
                       type="text"
                       {...register(govtId)}
                     />
@@ -232,24 +233,24 @@ export default function UserForm() {
           {/* Row 2 - 3_Text_Fields */}
           <Row className="mt-3">
             {/* text-field 1 */}
-            <Form.Group as={Col} md={5}>
+            <Form.Group className="mt-1"  xs={12} as={Col} md={4} lg={5}>
               <Row>
-                <Form.Label as={Col} md={4}>
+                <Form.Label xs={4} as={Col} md={8} lg={4}>
                   Guardian Name
                 </Form.Label>
-                <Col md={7}>
+                <Col xs={8} md={11} lg={7}>
                   <Form.Control type="text" {...register("guardianName")} placeholder="Enter Your Guardian Name" />
                 </Col>
               </Row>
             </Form.Group>
 
             {/* text-field 2 */}
-            <Form.Group as={Col} md={3}>
+            <Form.Group className="mt-1"  xs={12} as={Col} lg={3} md={4}>
               <Row>
-                <Form.Label md={2} as={Col}>
+                <Form.Label xs={3} md={3} lg={2} as={Col}>
                   Email
                 </Form.Label>
-                <Col md={10}>
+                <Col xs={9} md={10}>
                   <Form.Control type="text" {...register("email")} placeholder="Enter Your Email" />
                   {errors.email && (
                     <span className="error ps-2">{errors.email.message}</span>
@@ -259,12 +260,12 @@ export default function UserForm() {
             </Form.Group>
 
             {/* text-field 3 */}
-            <Form.Group as={Col} md={4}>
+            <Form.Group className="mt-1"  xs={12} as={Col} md={4}>
               <Row>
-                <Form.Label as={Col} md={5}>
+                <Form.Label xs={8} sm={4} as={Col} md={12} lg={5}>
                   Emergency Contact Number
                 </Form.Label>
-                <Col md={6}>
+                <Col xs={10} sm={8} md={12} lg={6}>
                   <Form.Control type="text" {...register("emergencyContact")} placeholder="Enter Your Contact Number"/>
                   {errors.emergencyContact && (
                     <span className="error ps-2">
@@ -292,32 +293,32 @@ export default function UserForm() {
           {/* Row 2 - 3_Text_Fields */}
           <Row className="mt-3">
             {/* text-field 1 */}
-            <Form.Group className="pe-5" as={Col} md={5}>
+            <Form.Group className="pe-5 mt-1" xs={12} as={Col} md={4} lg={5}>
               <Row>
-                <Form.Label as={Col} md={2}>
+                <Form.Label as={Col} xs={4} md={4} lg={2}>
                   Address
                 </Form.Label>
-                <Col md={10}>
+                <Col xs={8} md={12} lg={10}>
                   <Form.Control type="text" {...register("address")} placeholder="Enter Your Address"/>
                 </Col>
               </Row>
             </Form.Group>
 
             {/* text-field 2 */}
-            <Form.Group className="pe-5" as={Col} md={3}>
+            <Form.Group className="pe-5 mt-1" xs={12} as={Col} md={4} lg={3}>
               <Row>
-                <Form.Label as={Col}>State</Form.Label>
-                <Col md={9}>
+                <Form.Label as={Col} xs={4} md={3}>State</Form.Label>
+                <Col xs={8} md={12} lg={9}>
                   <Form.Control type="text" {...register("state")} placeholder="Enter Your State"/>
                 </Col>
               </Row>
             </Form.Group>
 
             {/* text-field 3 */}
-            <Form.Group className="pe-5" as={Col} md={4}>
+            <Form.Group className="pe-5 mt-1" xs={12} as={Col} md={4}>
               <Row>
-                <Form.Label as={Col}>City</Form.Label>
-                <Col md={10}>
+                <Form.Label md={3} lg={2} xs={4} as={Col}>City</Form.Label>
+                <Col md={10} xs={8}>
                   <Form.Control type="text" {...register("city")} placeholder="Enter Your City"/>
                 </Col>
               </Row>
@@ -328,22 +329,22 @@ export default function UserForm() {
           {/* Row 3 - 2_Text_Fields */}
           <Row className="mt-3">
             {/* text-field 1 */}
-            <Form.Group className="pe-5" as={Col} md={5}>
+            <Form.Group className="pe-5 mt-1" as={Col} xs={12} md={5}>
               <Row>
-                <Form.Label as={Col} md={2}>
+                <Form.Label as={Col} xs={4} md={4} lg={2}>
                   Country
                 </Form.Label>
-                <Col md={7}>
+                <Col md={10} xs={8} lg={7}>
                   <Form.Control type="text" {...register("country")} placeholder="Enter Your Country"/>
                 </Col>
               </Row>
             </Form.Group>
 
             {/* text-field 2 */}
-            <Form.Group className="pe-5" as={Col} md={3}>
+            <Form.Group className="pe-5 mt-1" xs={12} as={Col} md={4}>
               <Row>
-                <Form.Label as={Col}>Pincode</Form.Label>
-                <Col md={8}>
+                <Form.Label md={4} xs={4} as={Col}>Pincode</Form.Label>
+                <Col xs={8} md={10} lg={8}>
                   <Form.Control type="text" {...register("pincode")} placeholder="Enter Pincode"/>
                   {errors.pincode && (
                     <span className="error ps-2">{errors.pincode.message}</span>
@@ -369,24 +370,24 @@ export default function UserForm() {
           {/* Row 2 - 4_Text_Fields */}
           <Row className="mt-3">
             {/* text-field 1 */}
-            <Form.Group as={Col} md={3}>
+            <Form.Group className="mt-1"  as={Col} xs={12} md={3}>
               <Row>
-                <Form.Label as={Col} md={4}>
+                <Form.Label xs={4} as={Col} md={4}>
                   Occupation
                 </Form.Label>
-                <Col md={8}>
+                <Col md={12} xs={8} lg={8}>
                   <Form.Control type="text" {...register("occupation")} placeholder="Enter Occupation"/>
                 </Col>
               </Row>
             </Form.Group>
 
             {/* text-field 2 */}
-            <Form.Group className="ps-5" as={Col} md={3}>
+            <Form.Group className="mt-1"  xs={12} as={Col} md={3}>
               <Row>
-                <Form.Label as={Col} md={4}>
+                <Form.Label as={Col} xs={4} md={4}>
                   Category
                 </Form.Label>
-                <Col md={7}>
+                <Col md={10} xs={8} lg={7}>
                   <Form.Select {...register("category")}>
                     <option label="Select" />
                     <option value="General">General</option>
@@ -400,12 +401,12 @@ export default function UserForm() {
             </Form.Group>
 
             {/* text-field 3 */}
-            <Form.Group as={Col} md={3}>
+            <Form.Group className="mt-1" as={Col} xs={12} md={3}>
               <Row>
-                <Form.Label as={Col} md={6}>
+                <Form.Label as={Col} xs={6} md={10} lg={6}>
                   Martial Status
                 </Form.Label>
-                <Col md={6}>
+                <Col md={8} xs={6} lg={6}>
                   <Form.Select {...register("martialStatus")}>
                     <option label="Select" />
                     <option value="Married">Married</option>
@@ -416,12 +417,12 @@ export default function UserForm() {
             </Form.Group>
 
             {/* text-field 4 */}
-            <Form.Group as={Col} md={3}>
+            <Form.Group  className="mt-1" as={Col} xs={12} md={3}>
               <Row>
-                <Form.Label as={Col} md={5}>
+                <Form.Label as={Col} xs={6} md={10} lg={5}>
                   Blood Group
                 </Form.Label>
-                <Col md={5}>
+                <Col md={9} xs={6} lg={5}>
                   <Form.Select {...register("bloodGroup")}>
                     <option label="Select" />
                     <option value="A+">A+</option>
@@ -442,10 +443,10 @@ export default function UserForm() {
           {/* Row 3 - 1_Text_Fields */}
           <Row className="mt-3">
             {/* text-field 1 */}
-            <Form.Group as={Col} md={4}>
+            <Form.Group  className="mt-1" as={Col} xs={12} md={4}>
               <Row>
-                <Form.Label as={Col} md={3}>Nationality</Form.Label>
-                <Col md={8}>
+                <Form.Label as={Col} xs={4} md={10} lg={3}>Nationality</Form.Label>
+                <Col xs={8} md={8}>
                   <Form.Control type="text" {...register("nationality")} placeholder="Enter Your Nationality"/>
                 </Col>
               </Row>
@@ -456,13 +457,13 @@ export default function UserForm() {
 
         {/* Submit & Cancel Buttons */}
         <Container fluid>
-          <Row className="mb-3 mt-3 me-5 pe-5 justify-content-end">
-            <Col md={1}>
+          <Row className="mb-3 mt-3 me-5  justify-content-end">
+            <Col className="d-flex justify-content-center" xs={6} sm={2} md={2} lg={1}>
               <Button type="reset" variant="danger">
                 Cancel
               </Button>
             </Col>
-            <Col md={1}>
+            <Col className="d-flex justify-content-center" xs={6} sm={3} md={2}>
               <Button type="submit" variant="success">
                 Submit
               </Button>

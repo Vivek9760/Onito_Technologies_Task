@@ -20,7 +20,7 @@ export default function UsersData() {
 
   return (
     <Container fluid className="mt-4">
-      <Table style={{textAlign:"center"}} striped bordered hover>
+      <Table responsive="md" style={{textAlign:"center"}} striped bordered hover>
         <thead>
           <tr>
             <th>S.No.</th>
